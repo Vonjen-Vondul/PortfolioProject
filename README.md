@@ -1,3 +1,3 @@
-# PortfolioProject
-Data Analyst Portfolio Project Repository
+# Data Analyst Portfolio Project Repository
+
 This Repository contains all my data analysis projects 
