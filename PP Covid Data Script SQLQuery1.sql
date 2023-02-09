@@ -1,10 +1,15 @@
+/*
+Covid 19 Data Exploration 
+Skills used: Joins, CTE's, Temp Tables, Windows Functions, Aggregate Functions, Creating Views, Converting Data Types
+*/
+
 Select *
 From ProjectPortfolio..CovidDeaths
 order by 3,4
 
---Select *
---From ProjectPortfolio..CovidVaccinations
---order by 3,4
+Select *
+From ProjectPortfolio..CovidVaccinations
+order by 3,4
 
 Select location,date, total_cases, new_cases, total_deaths, population
 From ProjectPortfolio..CovidDeaths
@@ -103,7 +108,7 @@ where Dea.continent is not null
 order by 1,2,3
 
 
---use a CTE--
+--Using CTE to perform Calculation on Partition By in previous query
 
 with popvsVac (Continent,location, date, population, new_vaccinations,RollingPeopleVaccinated)
 as (
@@ -122,7 +127,7 @@ select *, (RollingPeopleVaccinated/population)*100
 from popvsVac
 
 
---temp table--
+--Using Temp Table to perform Calculation on Partition By in previous query
 
 drop table if exists #PercentPopulationVaccinated
 create table #PercentPopulationVaccinated (
@@ -151,7 +156,7 @@ select (RollingPeopleVaccinated/population)*100
 from #PercentPopulationVaccinated
 
 
---creating view to store later--
+--creating view to store later visualization
 
 create view PercentPopulationVaccinated as
 select Dea.continent, Dea.location, Dea.date, Dea.population, Vac.new_vaccinations,
